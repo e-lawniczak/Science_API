@@ -1,0 +1,69 @@
+version: '3'
+services:
+  api:
+    build: ./Backend
+    ports:
+      - 8080:8080
+    links:
+      - db:database
+    environment:
+      - PG_Name=labDb
+      - PG_Username=/run/secrets/pg_username
+      - PG_Password=/run/secrets/pg_password
+      - FRONT_URL=http://localhost:3000
+    secrets:
+      - pg_password
+      - pg_username
+  
+  front:
+    build: ./Frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+    environment:
+      - VITE_API_URL=http://localhost:8080
+
+  db:
+    image: postgres:17.6
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=labDb
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=localdevpw
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "db", "-U", "user"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    secrets:
+      - pg_password
+      - pg_username
+  
+  pg_admin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    ports:
+      - "15432:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=e@e.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    depends_on:
+      - db
+
+secrets:
+  pg_password:
+    file: ./secrets/pg_password.txt
+  pg_username:
+    file: ./secrets/pg_username.txt
+  
+  pga_password:
+    file: ./secrets/pga_password.txt
+  pga_username:
+    file: ./secrets/pga_username.txt
+
+volumes:
+  db-data:

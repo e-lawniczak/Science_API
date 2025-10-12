@@ -8,18 +8,21 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfiguration {
+public class SecurityConfig  {
     @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/swagger-ui/**").permitAll()
+                    .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/docs/**").permitAll()
+                    .requestMatchers("/auth/hello").permitAll()
                     .anyRequest().authenticated()
-            );
+            )
+                .httpBasic(Customizer.withDefaults());
+
+        ;
 
         return http.build();
     }
