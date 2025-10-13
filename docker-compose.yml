@@ -1,4 +1,3 @@
-version: '3'
 services:
   api:
     build: ./Backend
@@ -8,13 +7,12 @@ services:
       - db:database
     environment:
       - PG_Name=labDb
-      - PG_Username=/run/secrets/pg_username
-      - PG_Password=/run/secrets/pg_password
+      - PG_Username=labAdmin
+      - PG_Password=labPassword
       - FRONT_URL=http://localhost:3000
-    secrets:
-      - pg_password
-      - pg_username
-  
+    depends_on:
+      - db
+      
   front:
     build: ./Frontend
     ports:
@@ -23,47 +21,26 @@ services:
       - api
     environment:
       - VITE_API_URL=http://localhost:8080
+    develop:
+      watch:
+        - action: sync
+          path: ./Frontend
+          target: /app/frontend
+          ignore:
+            - node_modules/
+              dist/
+              .yarn/
 
   db:
     image: postgres:17.6
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - lab-data:/var/lib/postgresql/labData
     ports:
-      - 5432:5432
+      - 12345:5432
     environment:
       - POSTGRES_DB=labDb
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=localdevpw
-    healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-d", "db", "-U", "user"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    secrets:
-      - pg_password
-      - pg_username
-  
-  pg_admin:
-    image: dpage/pgadmin4
-    container_name: pgadmin4
-    ports:
-      - "15432:80"
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=e@e.com
-      - PGADMIN_DEFAULT_PASSWORD=password
-    depends_on:
-      - db
-
-secrets:
-  pg_password:
-    file: ./secrets/pg_password.txt
-  pg_username:
-    file: ./secrets/pg_username.txt
-  
-  pga_password:
-    file: ./secrets/pga_password.txt
-  pga_username:
-    file: ./secrets/pga_username.txt
+      - POSTGRES_USER=labAdmin
+      - POSTGRES_PASSWORD=labPassword
 
 volumes:
-  db-data:
+  lab-data: 

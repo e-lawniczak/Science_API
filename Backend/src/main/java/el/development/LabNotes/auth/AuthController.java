@@ -11,7 +11,7 @@ public class AuthController {
     public String getHello(){
         return "Hello from api";
     }
-    @GetMapping("/helloprivate")
+    @GetMapping("/helloprivatee")
     public String getHelloprivate(){
         return "private hello from api";
     }
