@@ -1,0 +1,151 @@
+@import './_vars';
+
+nav {
+    background-color: var(--secondary);
+    height: 100%;
+    position: fixed;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    left: 50px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 285px;
+    &::-webkit-scrollbar {
+        background-color: red;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: red;
+        width: 30px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: red;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+        margin: 20px;
+        overflow: hidden;
+        border-radius: 100%;
+    }
+
+    h1,
+    h4,
+    a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--secondary);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--link);
+        border-radius: 10px;
+    }
+
+
+}
+
+.profile {
+    a {
+        margin-top: 5px;
+        color: var(--link);
+    }
+}
+
+.navigation {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    gap: 5px;
+
+    .opt {
+        transition: all .3s;
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+        color: var(--text);
+
+
+        &:hover,
+        &[aria-current] {
+            color: var(--link);
+            text-decoration: underline;
+        }
+
+
+    }
+
+}
+
+.copy {
+    font-size: .7em;
+    text-align: center;
+}
+
+@media screen and (max-width:$mobileRes) {
+    .mobile-menu {
+        z-index: 3;
+        position: absolute;
+        left: 5px;
+        top: 13px;
+        width: 45px;
+        height: 35px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 1fr;
+        gap: 5px;
+        cursor: pointer;
+
+        .line {
+            width: 25px;
+            height: 3px;
+            border-radius: 100px;
+            background-color: var(--text);
+        }
+    }
+
+    nav {
+        display: none;
+        z-index: 2;
+        width: 100%;
+        max-width: unset;
+
+        &.menu-active {
+            display: flex;
+            left: 0;
+            width: 100%;
+            align-items: center;
+
+            .profile {
+                .img-container {
+                    display: none;
+                }
+            }
+
+            .navigation {}
+        }
+    }
+
+    .page-content {
+        padding-left: 0px;
+    }
+}

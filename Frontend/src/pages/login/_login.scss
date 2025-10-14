@@ -1,0 +1,33 @@
+.skill-table {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .section-name {
+        margin-top: 25px;
+        margin-bottom: 10px;
+
+        h4 {}
+    }
+
+    .tr {
+
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        &.even {
+            background-color: var(--accent);
+        }
+
+        .th {
+            border-bottom: 2px solid var(--text);
+            font-weight: bold;
+        }
+
+        .td,
+        .th {
+            padding: 10px;
+
+        }
+    }
+}

@@ -1,15 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Suspense } from 'react';
+import { ProjectPages } from './components/common/ProjectPages';
+import './styles/appStyles.scss'
+import {
+  createBrowserRouter,
+  RouterProvider,
 
-function App() {
-  const [count, setCount] = useState(0)
-  const url = import.meta.env.VITE_API_URL;
+} from "react-router-dom";
+import { Loader } from './components/common/Loader';
+
+
+
+const App = () => {
+
+  const router = createBrowserRouter(
+    ProjectPages.map(p => {
+      return {
+        path: p.path,
+        element: <Suspense fallback={<Loader />}>
+          {p.element}
+        </Suspense>
+      }
+    })
+  )
   return (
-    <>
-    
-    </>
+    <div className='app-container'>
+      <RouterProvider router={router} />
+    </div>
   )
 }
 
