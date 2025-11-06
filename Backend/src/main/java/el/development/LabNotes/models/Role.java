@@ -1,4 +1,4 @@
-package el.development.LabNotes.user.models;
+package el.development.LabNotes.models;
 
 public enum Role {
     TEACHER("PROMOTER"),
