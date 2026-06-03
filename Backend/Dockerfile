@@ -1,4 +1,4 @@
-FROM openjdk:26-ea-trixie AS build2
+FROM openjdk:27-ea-trixie AS build2
 WORKDIR /app/backend
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar

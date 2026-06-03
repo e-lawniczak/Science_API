@@ -1,7 +1,7 @@
-//package el.development.LabNotes.log;
+//package el.development.ScienceAPI.log;
 //
-//import el.development.LabNotes.ApiResponse;
-//import el.development.LabNotes.models.Log;
+//import el.development.ScienceAPI.ApiResponse;
+//import el.development.ScienceAPI.models.Log;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
 //

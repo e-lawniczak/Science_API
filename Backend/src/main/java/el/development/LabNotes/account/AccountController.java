@@ -1,7 +1,7 @@
-package el.development.LabNotes.account;
+package el.development.ScienceAPI.account;
 
-import el.development.LabNotes.ApiResponse;
-import el.development.LabNotes.ApiStatusCode;
+import el.development.ScienceAPI.ApiResponse;
+import el.development.ScienceAPI.ApiStatusCode;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

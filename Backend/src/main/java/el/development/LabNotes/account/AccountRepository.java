@@ -1,6 +1,6 @@
-package el.development.LabNotes.account;
+package el.development.ScienceAPI.account;
 
-import el.development.LabNotes.models.User;
+import el.development.ScienceAPI.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;

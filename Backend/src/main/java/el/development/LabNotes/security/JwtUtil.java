@@ -1,4 +1,4 @@
-package el.development.LabNotes.security;
+package el.development.ScienceAPI.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.function.Function;
 
-import static el.development.LabNotes.security.SecurityVars.JWT_EXPIRATION;
-import static el.development.LabNotes.security.SecurityVars.JWT_SECRET;
+import static el.development.ScienceAPI.security.SecurityVars.JWT_EXPIRATION;
+import static el.development.ScienceAPI.security.SecurityVars.JWT_SECRET;
 
 @Service
 public class JwtUtil {

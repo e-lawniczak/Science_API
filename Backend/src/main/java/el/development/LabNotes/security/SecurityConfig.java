@@ -1,6 +1,6 @@
-package el.development.LabNotes.security;
+package el.development.ScienceAPI.security;
 
-import el.development.LabNotes.account.AccountService;
+import el.development.ScienceAPI.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

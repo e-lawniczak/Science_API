@@ -1,4 +1,4 @@
-package el.development.LabNotes;
+package el.development.ScienceAPI;
 
 public enum ApiStatusCode {
     //OK

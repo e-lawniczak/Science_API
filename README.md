@@ -1,4 +1,4 @@
-# LabNotes
+# ScienceAPI
 
 This project aim is to implement collaborative text editor such as Google Docs and pair it with groups and supervising features.
 
@@ -15,12 +15,23 @@ Documents should provide access control and be visible only to those who are pri
 [![React][React.js]][React-url]
 [![Postgres][Postgres]][Postgres-url]
 [![Docker][Docker]][Docker-url]
-## Functional requirements
-### Anonymous user
+
+
+## Running the project
+```
+docker compose -f docker-compose.yml
+```
+
+## ICD 11 Search
+
+
+## LAB_NOTES
+### Functional requirements 
+#### Anonymous user
 - View login page
 - Log in
 - Reset password
-### Basic user
+#### Basic user
 - View assigned science groups
 - Leave a science group
 - View accessible documents within science group
@@ -30,18 +41,18 @@ Documents should provide access control and be visible only to those who are pri
 - Set privileges for documents
 - Soft delete owned documents
 - Manage profile (change password and email)
-### Supervisor user
+#### Supervisor user
 - Everything basic user can do
 - Create, view, edit, and delete science group
 - Add users to science group using email or username
 - Permanently delete documents from science group
 - Edit all documents within science group
 - View all documents within science group
-### Admin user
+#### Admin user
 - Create users
 - Reset user password
 - Manage users (change roles, deactivate accounts, delete accounts)
-## Nonfunctional requirements
+### Nonfunctional requirements
 - App is dockerized and easy to deploy on any server
 - UI compatible with Mozilla Firefox and Chrome
 - After logging in creating or accessing recently view document requires only 1 click

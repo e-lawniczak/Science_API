@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>el.development</groupId>
-    <artifactId>LabNotes</artifactId>
+    <artifactId>ScienceAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>LabNotes</name>
-    <description>LabNotes colaborative text editor project</description>
+    <name>ScienceAPI</name>
+    <description>ScienceAPI - every idea I had</description>
     <url/>
     <licenses>
         <license/>

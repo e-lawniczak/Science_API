@@ -1,13 +1,13 @@
-package el.development.LabNotes;
+package el.development.ScienceAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LabNotesApplication {
+public class ScienceAPIApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LabNotesApplication.class, args);
+		SpringApplication.run(ScienceAPIApplication.class, args);
 	}
 
 }

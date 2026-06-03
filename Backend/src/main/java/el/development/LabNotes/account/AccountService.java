@@ -1,8 +1,8 @@
-package el.development.LabNotes.account;
+package el.development.ScienceAPI.account;
 
-import el.development.LabNotes.ApiStatusCode;
-import el.development.LabNotes.ApiResponse;
-import el.development.LabNotes.models.User;
+import el.development.ScienceAPI.ApiStatusCode;
+import el.development.ScienceAPI.ApiResponse;
+import el.development.ScienceAPI.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package el.development.LabNotes.auth;
+package el.development.ScienceAPI.auth;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,8 +12,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
-import static el.development.LabNotes.security.SecurityVars.AUTH_COOKIE_NAME;
-import static el.development.LabNotes.security.SecurityVars.JWT_EXPIRATION;
+import static el.development.ScienceAPI.security.SecurityVars.AUTH_COOKIE_NAME;
+import static el.development.ScienceAPI.security.SecurityVars.JWT_EXPIRATION;
 
 @RestController
 @RequestMapping("auth")

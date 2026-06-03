@@ -1,4 +1,4 @@
-package el.development.LabNotes.auth;
+package el.development.ScienceAPI.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

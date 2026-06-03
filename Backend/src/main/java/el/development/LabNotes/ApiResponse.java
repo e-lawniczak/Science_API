@@ -1,4 +1,4 @@
-package el.development.LabNotes;
+package el.development.ScienceAPI;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

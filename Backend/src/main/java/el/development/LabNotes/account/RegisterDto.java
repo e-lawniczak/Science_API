@@ -1,4 +1,4 @@
-package el.development.LabNotes.account;
+package el.development.ScienceAPI.account;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;

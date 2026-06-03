@@ -1,4 +1,4 @@
-package el.development.LabNotes.security;
+package el.development.ScienceAPI.security;
 
 public class SecurityVars {
     public static final long JWT_EXPIRATION = 60 * 60* 1000;

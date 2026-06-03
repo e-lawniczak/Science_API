@@ -1,8 +1,8 @@
-package el.development.LabNotes.security;
+package el.development.ScienceAPI.security;
 
-import el.development.LabNotes.account.AccountRepository;
-import el.development.LabNotes.account.AccountService;
-import el.development.LabNotes.models.User;
+import el.development.ScienceAPI.account.AccountRepository;
+import el.development.ScienceAPI.account.AccountService;
+import el.development.ScienceAPI.models.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static el.development.LabNotes.security.SecurityVars.AUTH_COOKIE_NAME;
+import static el.development.ScienceAPI.security.SecurityVars.AUTH_COOKIE_NAME;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {

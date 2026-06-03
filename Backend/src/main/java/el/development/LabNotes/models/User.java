@@ -1,4 +1,4 @@
-package el.development.LabNotes.models;
+package el.development.ScienceAPI.models;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Table;

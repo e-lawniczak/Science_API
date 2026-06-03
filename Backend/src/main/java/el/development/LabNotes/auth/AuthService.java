@@ -1,10 +1,10 @@
-package el.development.LabNotes.auth;
+package el.development.ScienceAPI.auth;
 
-import el.development.LabNotes.ApiResponse;
-import el.development.LabNotes.ApiStatusCode;
-import el.development.LabNotes.account.AccountRepository;
-import el.development.LabNotes.account.AccountService;
-import el.development.LabNotes.security.JwtUtil;
+import el.development.ScienceAPI.ApiResponse;
+import el.development.ScienceAPI.ApiStatusCode;
+import el.development.ScienceAPI.account.AccountRepository;
+import el.development.ScienceAPI.account.AccountService;
+import el.development.ScienceAPI.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

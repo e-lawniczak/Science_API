@@ -1,4 +1,4 @@
-package el.development.LabNotes.auth;
+package el.development.ScienceAPI.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
