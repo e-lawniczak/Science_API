@@ -7,6 +7,7 @@ import {
 
 } from "react-router-dom";
 import { Loader } from './components/common/Loader';
+import AuthProvider from './components/common/Auth/AuthProvider';
 
 
 
@@ -24,7 +25,9 @@ const App = () => {
   )
   return (
     <div className='app-container'>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </div>
   )
 }

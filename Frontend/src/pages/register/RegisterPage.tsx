@@ -2,6 +2,7 @@ import { useForm, type SubmitHandler } from "react-hook-form"
 import { BasePage } from "../../components/layout/BasePage"
 import axios from "axios"
 import { api_url } from "../../components/common/ProjectPages"
+import { registerUser } from "../../helpers/authHelpers"
 
 type RegisterInputs = {
     firstName: string
@@ -19,8 +20,8 @@ export default () => {
         watch,
         formState: { errors },
     } = useForm<RegisterInputs>()
-    const onSubmit: SubmitHandler<RegisterInputs> = (data) => {
-        axios.post(`${api_url}/account/register`, data)
+    const onSubmit: SubmitHandler<RegisterInputs> = async (data) => {
+        var res = await registerUser()
     }
 
 

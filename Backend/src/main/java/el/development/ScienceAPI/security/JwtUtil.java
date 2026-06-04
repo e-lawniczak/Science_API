@@ -3,9 +3,12 @@ package el.development.ScienceAPI.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.function.Function;
 
@@ -19,14 +22,14 @@ public class JwtUtil {
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + JWT_EXPIRATION);
 
-        String token = Jwts.builder()
-                .setSubject(email)
-                .setAudience(email)
-                .setIssuedAt(new Date())
-                .setExpiration(expireDate)
-                .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
+        io.jsonwebtoken.JwtBuilder builder = Jwts.builder();
+        builder.subject(email);
+        builder.issuedAt(new Date());
+        builder.expiration(expireDate);
+        builder.signWith(getSigningKey(), Jwts.SIG.HS512);
+        builder.audience().add(email);
+        return builder
                 .compact();
-        return token;
     }
 
     public Date extractExpiration(String token){
@@ -39,7 +42,11 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(token).getBody();
+
+        return Jwts.parser().verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
     private boolean isTokenExpired(String token){
         return extractExpiration(token).before(new Date());
@@ -51,12 +58,25 @@ public class JwtUtil {
 
     public boolean validateToken(String token, UserDetails userDetails) {
         try {
-            Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(token);
-            var username = extractEmail(token);
 
-            return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+            Jwts.parser()
+                    .verifyWith(getSigningKey())
+                    .build()
+                    .parseSignedClaims(token);
+
+            String username = extractEmail(token);
+
+            return username.equals(userDetails.getUsername())
+                    && !isTokenExpired(token);
+
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    private SecretKey getSigningKey() {
+        return Keys.hmacShaKeyFor(
+                JWT_SECRET.getBytes(StandardCharsets.UTF_8)
+        );
     }
 }

@@ -6,7 +6,7 @@ services:
     links:
       - db:database
     environment:
-      - PG_Name=labDb
+      - PG_Name=science_data
       - PG_Username=labAdmin
       - PG_Password=labPassword
       - FRONT_URL=http://localhost:3000
@@ -21,6 +21,10 @@ services:
       - api
     environment:
       - VITE_API_URL=http://localhost:8080/api
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./Frontend:/app/frontend
+      - /app/frontend/node_modules
     develop:
       watch:
         - action: sync
@@ -28,19 +32,30 @@ services:
           target: /app/frontend
           ignore:
             - node_modules/
-              dist/
-              .yarn/
+            - dist/
+            - .yarn/
 
   db:
     image: postgres:17.6
     volumes:
-      - lab-data:/var/lib/postgresql/labData
+      - science-data:/var/lib/postgresql/scienceData
     ports:
       - 12345:5432
     environment:
-      - POSTGRES_DB=labDb
+      - POSTGRES_DB=science_data
       - POSTGRES_USER=labAdmin
       - POSTGRES_PASSWORD=labPassword
 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_web
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
 volumes:
-  lab-data: 
+  science-data: 

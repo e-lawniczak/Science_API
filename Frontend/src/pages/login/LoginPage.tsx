@@ -1,9 +1,10 @@
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { BasePage } from "../../components/layout/BasePage"
 import "./_login.scss"
-import { NavLink } from "react-router-dom"
-import { api_url } from "../../components/common/ProjectPages"
-import axios from "axios"
+import { NavLink, useNavigate } from "react-router-dom"
+import { login } from "../../helpers/authHelpers"
+import { setCookie } from "../../helpers/cookieHelper"
+import { useAuth } from "../../components/common/Auth/AuthContext"
 
 type LoginInputs = {
     login: string
@@ -16,12 +17,19 @@ export default () => {
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm<LoginInputs>()
-  
-      const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
-          var res = await axios.post(`${api_url}/auth/login`, data)
-          console.log(res);
-      }
+    } = useForm<LoginInputs>(),
+        nav = useNavigate(),
+        { refreshUser } = useAuth()
+
+
+    const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
+        var res = await login(data)
+        if (!res.success)
+            return;
+        setCookie("authorized", "true", 1)
+        refreshUser()
+        nav("/")
+    }
     return <BasePage pageCssClass="auth-page login-page">
         <div className="wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>

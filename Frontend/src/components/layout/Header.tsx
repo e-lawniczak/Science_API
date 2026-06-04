@@ -2,13 +2,19 @@ import '../../styles/_header.scss'
 import { useEffect, useState } from "react"
 import { ProfileInfo } from './SideBar'
 import { NavLink } from 'react-router-dom'
+import { logout } from '../../helpers/authHelpers'
 
 export const Header = () => {
 
+    const onLogoutClick = async () =>{
+        await logout();
+    }
 
     return <header className={["site-header"].join(" ")}>
         <div className="wrapper">
           <NavLink to={'/login'} >Login</NavLink>
+          <NavLink to={'/'} >Home</NavLink>
+          <a className='logout-btn' onClick={()=>onLogoutClick()}>Logout</a>
         </div>
     </header>
 }

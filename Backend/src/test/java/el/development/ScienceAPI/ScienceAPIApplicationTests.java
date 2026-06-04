@@ -9,5 +9,4 @@ class ScienceAPIApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
