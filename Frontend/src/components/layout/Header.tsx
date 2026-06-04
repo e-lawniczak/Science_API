@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { dispatchAuthExpired, logout } from '../../helpers/authHelpers'
 import { useAuth } from '../common/Auth/AuthContext'
 import { deleteCookie } from '../../helpers/cookieHelper'
+import { ProjectPages } from '../common/ProjectPages'
 
 export const Header = () => {
     const { refreshUser, authenticated } = useAuth()
@@ -20,16 +21,15 @@ export const Header = () => {
     return <header className={["site-header"].join(" ")}>
         <div className="wrapper">
             {
-                !authenticated && <>
-                    <NavLink to={'/login'} >Login</NavLink>
-                    <NavLink to={'/register'} >Register</NavLink>
+                authenticated && <>
+                    {ProjectPages.filter(f => f.isMenuElement && f.isAuth).map(p => <NavLink to={p.path} >{p.label}</NavLink>)}
+                    <a className='logout-btn' onClick={() => onLogoutClick()}>Logout</a>
                 </>
             }
 
             {
-                authenticated && <>
-                    <NavLink to={'/'} >Home</NavLink>
-                    <a className='logout-btn' onClick={() => onLogoutClick()}>Logout</a>
+                !authenticated && <>
+                    {ProjectPages.filter(f => f.isMenuElement && !f.isAuth).map(p => <NavLink to={p.path} >{p.label}</NavLink>)}
                 </>
             }
         </div>

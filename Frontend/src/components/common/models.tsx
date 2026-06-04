@@ -4,6 +4,8 @@ export interface ProjectPage {
     className?: string,
     label?: string,
     element: any,
+    isAuth: boolean,
+    isMenuElement: boolean
 }
 
 export interface IChronologyEntry {

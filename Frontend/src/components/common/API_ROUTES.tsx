@@ -3,4 +3,5 @@ export const API_ROUTES ={
     logout: `/auth/logout`,
     login: `/auth/login`,
     register: `/account/register`,
+    postDisorder: `/icd/disorder`,
 }
