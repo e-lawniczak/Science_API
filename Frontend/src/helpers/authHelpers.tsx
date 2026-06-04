@@ -1,10 +1,11 @@
 import { APIClient } from "./APIClient";
 import { API_ROUTES } from "../components/common/API_ROUTES";
+import { deleteCookie } from "./cookieHelper";
 
 export async function isAuthenticatedAPI() {
     var api = new APIClient()
     var res = await api.get(API_ROUTES.me);
-    
+
     return res;
 }
 
@@ -14,18 +15,24 @@ export const logout = async () => {
     return res;
 }
 
-export const login = async (data:any) => {
+export const login = async (data: any) => {
     var api = new APIClient()
     var res = await api.post(API_ROUTES.login, data);
     return res;
-    
+
 }
 
-export const registerUser = async (data:any) => {
+export const registerUser = async (data: any) => {
     var api = new APIClient()
     var res = await api.post(API_ROUTES.register, data);
     return res;
 }
 
 
-
+export const dispatchAuthExpired = () => {
+    console.log("dispatching auth-expired");
+    deleteCookie("authorized")
+    window.dispatchEvent(
+        new CustomEvent("auth-expired")
+    );
+}

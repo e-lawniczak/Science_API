@@ -23,7 +23,6 @@ export default function AuthProvider({ children }: Props) {
     const refreshUser = async () => {
         try {
             var auth = getCookie("authorized")
-            console.log(auth)
             setAuthenticated(!!auth);
 
             if (!!auth) {

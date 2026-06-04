@@ -11,6 +11,7 @@ export default function GuestRoute({
 }: Props) {
 
     const { authenticated, loading } = useAuth();
+    console.log({ authenticated, loading })
 
     if (loading) {
         return <Loader />;

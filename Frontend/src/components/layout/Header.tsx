@@ -1,20 +1,37 @@
 import '../../styles/_header.scss'
 import { useEffect, useState } from "react"
-import { ProfileInfo } from './SideBar'
 import { NavLink } from 'react-router-dom'
-import { logout } from '../../helpers/authHelpers'
+import { dispatchAuthExpired, logout } from '../../helpers/authHelpers'
+import { useAuth } from '../common/Auth/AuthContext'
+import { deleteCookie } from '../../helpers/cookieHelper'
 
 export const Header = () => {
+    const { refreshUser, authenticated } = useAuth()
 
-    const onLogoutClick = async () =>{
-        await logout();
+
+
+    const onLogoutClick = async () => {
+        var res = await logout();
+        if (res.success) {
+            dispatchAuthExpired()
+        }
     }
 
     return <header className={["site-header"].join(" ")}>
         <div className="wrapper">
-          <NavLink to={'/login'} >Login</NavLink>
-          <NavLink to={'/'} >Home</NavLink>
-          <a className='logout-btn' onClick={()=>onLogoutClick()}>Logout</a>
+            {
+                !authenticated && <>
+                    <NavLink to={'/login'} >Login</NavLink>
+                    <NavLink to={'/register'} >Register</NavLink>
+                </>
+            }
+
+            {
+                authenticated && <>
+                    <NavLink to={'/'} >Home</NavLink>
+                    <a className='logout-btn' onClick={() => onLogoutClick()}>Logout</a>
+                </>
+            }
         </div>
     </header>
 }

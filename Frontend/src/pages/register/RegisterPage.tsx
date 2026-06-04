@@ -3,6 +3,7 @@ import { BasePage } from "../../components/layout/BasePage"
 import axios from "axios"
 import { api_url } from "../../components/common/ProjectPages"
 import { registerUser } from "../../helpers/authHelpers"
+import { useNavigate } from "react-router-dom"
 
 type RegisterInputs = {
     firstName: string
@@ -19,9 +20,12 @@ export default () => {
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm<RegisterInputs>()
+    } = useForm<RegisterInputs>(),
+        nav = useNavigate();
     const onSubmit: SubmitHandler<RegisterInputs> = async (data) => {
-        var res = await registerUser()
+        var res = await registerUser(data)
+        if (res.success)
+            nav("/login")
     }
 
 

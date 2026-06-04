@@ -19,7 +19,8 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/register")
-    public void registerAccount(@RequestBody RegisterDto register) {
+    public ApiResponse<Void> registerAccount(@RequestBody RegisterDto register) {
         accountService.createNewAccount(register);
+        return new ApiResponse<>(ApiStatusCode.OK);
     }
 }

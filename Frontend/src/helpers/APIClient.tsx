@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import { api_url } from "../components/common/ProjectPages";
 import type { APIResponse, RawAPIResponse } from "./models";
 import { deleteCookie } from "./cookieHelper";
+import { dispatchAuthExpired } from "./authHelpers";
 
 export class APIClient {
     API_URL: any;
@@ -80,11 +81,7 @@ export class APIClient {
     }
 
     #handleUnauthorizedRequest = () => {
-        console.log("dispatching auth-expired");
-        deleteCookie("authorized")
-        window.dispatchEvent(
-            new CustomEvent("auth-expired")
-        );
+       dispatchAuthExpired()
     }
 
 }

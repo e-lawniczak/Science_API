@@ -50,7 +50,7 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public void logout(HttpServletResponse response) {
+    public ApiResponse<Void> logout(HttpServletResponse response) {
 
         try{
             var login = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication());
@@ -69,6 +69,7 @@ public class AuthController {
             log.error(e.getMessage(), Arrays.toString(e.getStackTrace()));
             throw new ApiException(ApiStatusCode.ERROR);
         }
+        return new ApiResponse<>(ApiStatusCode.OK);
     }
 
     @GetMapping("/me")
