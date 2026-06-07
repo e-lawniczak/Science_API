@@ -32,7 +32,7 @@ export default () => {
     return <BasePage pageCssClass="auth-page login-page">
         <div className="wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input placeholder="firstName" {...register("firstName")} />
+                <input  placeholder="firstName" {...register("firstName")} />
                 <input placeholder="lastName" {...register("lastName")} />
                 <input placeholder="email" {...register("email")} type="email" />
                 <input placeholder="password" {...register("password")} type="password" />
